@@ -36,7 +36,7 @@ public class PaymentControllerTest {
         assertDoesNotThrow(()->paymentController.deposit(50L,100L));
         verify(accountService,times(1)).isUserAuthenticated(100L);
 
-        assertThrows(SecurityException.class,()->paymentController.deposit(500L,10L));
-        assertThrows(Exception.class,()->paymentController.deposit(500L,100L));
+        assertThrows(Exception.class,()->paymentController.deposit(500L,10L));
+        assertThrows(InsufficientFundsException.class,()->paymentController.deposit(500L,100L));
     }
 }
